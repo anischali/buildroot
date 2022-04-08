@@ -1,0 +1,51 @@
+From 87f75dd2a5bbc76509fe4c9d7d85e5cc3baf058d Mon Sep 17 00:00:00 2001
+From: Anis CHALI <anis.chali@exfo.com>
+Date: Tue, 15 Mar 2022 13:03:04 -0400
+Subject: [PATCH] sun8i: activate hdmi port
+
+---
+ .../dts/sun8i-h3-plus-bananapi-m2-zero.dts    | 21 +++++++++++++++++++
+ 1 file changed, 21 insertions(+)
+
+diff --git a/arch/arm/boot/dts/sun8i-h3-plus-bananapi-m2-zero.dts b/arch/arm/boot/dts/sun8i-h3-plus-bananapi-m2-zero.dts
+index c038f6e0e..d18de7c4e 100644
+--- a/arch/arm/boot/dts/sun8i-h3-plus-bananapi-m2-zero.dts
++++ b/arch/arm/boot/dts/sun8i-h3-plus-bananapi-m2-zero.dts
+@@ -26,6 +26,17 @@ chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+ 
++	connector {
++		compatible = "hdmi-connector";
++		type = "a";
++
++		port {
++			hdmi_con_in: endpoint {
++				remote-endpoint = <&hdmi_out_con>;
++			};
++		};
++	};
++
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+@@ -78,6 +89,16 @@ &ehci0 {
+ 	status = "okay";
+ };
+ 
++&hdmi {
++	status = "okay";
++};
++
++&hdmi_out {
++	hdmi_out_con: endpoint {
++		remote-endpoint = <&hdmi_con_in>;
++	};
++};
++
+ &mmc0 {
+ 	vmmc-supply = <&reg_vcc3v3>;
+ 	bus-width = <4>;
+-- 
+2.32.0
+
