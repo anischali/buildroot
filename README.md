@@ -1,6 +1,6 @@
 Build:
 
-git clone git@github.com:anischali/buildroot.git
+git clone https://github.com/anischali/buildroot.git
 
 cd buildroot
 
