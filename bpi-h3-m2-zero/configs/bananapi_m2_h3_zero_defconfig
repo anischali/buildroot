@@ -49,3 +49,16 @@ BR2_PACKAGE_HOST_GENIMAGE=y
 BR2_PACKAGE_HOST_MTOOLS=y
 BR2_ROOTFS_POST_IMAGE_SCRIPT="support/scripts/genimage.sh"
 BR2_ROOTFS_POST_SCRIPT_ARGS="-c $(BR2_EXTERNAL)/board/bananapi/bananapi-h3-m2-zero/genimage.cfg"
+
+#
+# Rootfs overlays
+#
+BR2_ROOTFS_OVERLAY="$(BR2_EXTERNAL)/board/bananapi/bananapi-h3-m2-zero/rootfs-overlay"
+
+#
+# Packages
+#
+BR2_PACKAGE_OPENSSH=y
+BR2_PACKAGE_OPENSSH_CLIENT=y
+BR2_PACKAGE_OPENSSH_SERVER=y
+BR2_PACKAGE_OPENSSH_KEY_UTILS=y
