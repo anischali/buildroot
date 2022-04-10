@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  buildroot:
+    build:
+      context: .
+    user: br-user:br-user
+    volumes:
+      - ./bpi-h3-m2-zero:/home/br-user/external:ro
+      - ./buildroot:/home/br-user/buildroot:rw
+      - $HOME/.ssh:/home/br-user/.ssh:ro
+    network_mode: host  
+    stdin_open: true
+    tty: true
+    cap_add:
+      - ALL
