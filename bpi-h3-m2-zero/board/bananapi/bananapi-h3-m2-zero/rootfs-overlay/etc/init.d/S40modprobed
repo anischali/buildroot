@@ -1,0 +1,47 @@
+#!/bin/sh
+#
+# modprobed        loads the given kernel modules in /etc/modules.lst
+#
+
+# Make sure the /etc/modules.lst exists
+[ -f /etc/modules.lst ] || exit 0
+
+modules="$(cat /etc/modules.lst)"
+
+start() {
+	
+	printf "Loading kernel modules: "
+	for module in $modules; do
+		modprobe "$module"
+	done
+	echo "OK"
+}
+stop() {
+	printf "Removing kernel modules: "
+	for module in $modules; do
+		modprobe -r "$module"
+	done
+	echo "OK"
+}
+restart() {
+	stop
+	start
+}
+
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  restart|reload)
+	restart
+	;;
+  *)
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+esac
+
+exit $?
+
