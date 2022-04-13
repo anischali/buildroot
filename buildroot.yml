@@ -6,7 +6,7 @@ services:
       context: .
     user: br-user:br-user
     volumes:
-      - ./bpi-h3-m2-zero:/home/br-user/external:ro
+      - ./external:/home/br-user/external:ro
       - ./buildroot:/home/br-user/buildroot:rw
       - $HOME/.ssh:/home/br-user/.ssh:ro
     network_mode: host  
