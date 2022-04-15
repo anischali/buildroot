@@ -10,9 +10,22 @@ iface eth0 inet static
     broadcast 169.254.255.255
     netmask 255.255.0.0
     
+# mwifiex driver does not support ap mode natively
+# so we need just to bring up the wlan0 and create
+# a virtual interface uap0 for the access point.
+# launching hostapd on the native wireless card
+# will lead to the the issue reported in the link
+# below https://bugzilla.kernel.org/show_bug.cgi?id=215836
+# and this corresponds to what indicated by linux wireless
+# maintainers group in the documentation below
+# http://linuxwireless.sipsolutions.net/en/users/Drivers/mwifiex/index.html
 auto mlan0
-iface mlan0 inet static
+iface mlan0 inet manual
     pre-up sleep 2
+    post-up iw dev wlan0 interface add uap0 type __ap
+
+auto uap0
+iface uap0 inet static
     address 169.250.150.10
     network 169.250.0.0
     broadcast 169.250.255.255
