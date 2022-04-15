@@ -2,16 +2,18 @@
 
 [ -f /etc/hostapd.conf ] || exit 0
 
+mkdir -p /run/hostapd
+
 start() {
 	printf "Starting hostapd: "
 	start-stop-daemon -b -S -x /usr/sbin/hostapd /etc/hostapd.conf
-	[ $? = 0 ] && echo "OK" || echo "FAIL"
+	[ $? = 0 ] && echo "OK" && touch /run/hostapd/lock || echo "FAIL"
 }
 
 stop() {
 	printf "Stopping hostapd: "
 	start-stop-daemon -K -q -x /usr/sbin/hostapd
-	[ $? = 0 ] && echo "OK" || echo "FAIL"
+	[ $? = 0 ] && echo "OK" && rm /run/hostapd/lock || echo "FAIL"
 }
 
 restart() {
