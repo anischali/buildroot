@@ -1,10 +1,20 @@
-Build:
+Fetch:
+
+Standalone:
 
 git clone https://github.com/anischali/buildroot.git
 
 cd buildroot
 
 git clone git://git.buildroot.net/buildroot
+
+Using repo:
+
+repo init -u https://github.com/anischali/manifests.git -b main
+
+repo sync -m bpi_h3_m2_zero.xml
+
+Build:
 
 docker-compose -f buildroot.yml build
 
