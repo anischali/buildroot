@@ -10,7 +10,7 @@ git clone git://git.buildroot.net/buildroot
 
 Using repo:
 
-repo init -u https://github.com/anischali/manifests.git -b main
+repo init -u git@github.com:anischali/manifests.git -b main
 
 repo sync -m bpi_h3_m2_zero.xml
 
