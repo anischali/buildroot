@@ -31,7 +31,7 @@
 
 	connector {
 		compatible = "hdmi-connector";
-		type = "a";
+		type = "c";
 
 		port {
 			hdmi_con_in: endpoint {
